@@ -4,14 +4,15 @@
     ".NETCoreApp,Version=v3.1": {
       "Aptacode.Expressions": {
         "type": "Direct",
-        "requested": "[1.0.9, )",
-        "resolved": "1.0.9",
-        "contentHash": "nc6WUrk4xqmf+PuPASkqSfDBNqFwhK6anPn+a8RL57csPjauvBRN+oFmhZGDETL5UpYQVp4FDH/g9T51s2mAJg==",
+        "requested": "[1.0.12, )",
+        "resolved": "1.0.12",
+        "contentHash": "lCy74NiOiXeMQVzvFRkXAcJrrzQ1CYPqZbcLwKFs7wKjiIh8VyP5EvpGclNHeFxogVuWdus1PGzLXsn63RFhWQ==",
         "dependencies": {
           "JsonSubTypes": "1.8.0",
           "Microsoft.CSharp": "4.7.0",
           "Newtonsoft.Json": "13.0.1",
-          "System.Drawing.Common": "5.0.0"
+          "System.Drawing.Common": "5.0.0",
+          "System.ValueTuple": "4.5.0"
         }
       },
       "System.Collections.Immutable": {
@@ -69,13 +70,14 @@
     ".NETFramework,Version=v4.5": {
       "Aptacode.Expressions": {
         "type": "Direct",
-        "requested": "[1.0.9, )",
-        "resolved": "1.0.9",
-        "contentHash": "nc6WUrk4xqmf+PuPASkqSfDBNqFwhK6anPn+a8RL57csPjauvBRN+oFmhZGDETL5UpYQVp4FDH/g9T51s2mAJg==",
+        "requested": "[1.0.12, )",
+        "resolved": "1.0.12",
+        "contentHash": "lCy74NiOiXeMQVzvFRkXAcJrrzQ1CYPqZbcLwKFs7wKjiIh8VyP5EvpGclNHeFxogVuWdus1PGzLXsn63RFhWQ==",
         "dependencies": {
           "JsonSubTypes": "1.8.0",
           "Microsoft.CSharp": "4.7.0",
-          "Newtonsoft.Json": "13.0.1"
+          "Newtonsoft.Json": "13.0.1",
+          "System.ValueTuple": "4.5.0"
         }
       },
       "System.Collections.Immutable": {
@@ -112,14 +114,15 @@
     ".NETStandard,Version=v2.0": {
       "Aptacode.Expressions": {
         "type": "Direct",
-        "requested": "[1.0.9, )",
-        "resolved": "1.0.9",
-        "contentHash": "nc6WUrk4xqmf+PuPASkqSfDBNqFwhK6anPn+a8RL57csPjauvBRN+oFmhZGDETL5UpYQVp4FDH/g9T51s2mAJg==",
+        "requested": "[1.0.12, )",
+        "resolved": "1.0.12",
+        "contentHash": "lCy74NiOiXeMQVzvFRkXAcJrrzQ1CYPqZbcLwKFs7wKjiIh8VyP5EvpGclNHeFxogVuWdus1PGzLXsn63RFhWQ==",
         "dependencies": {
           "JsonSubTypes": "1.8.0",
           "Microsoft.CSharp": "4.7.0",
           "Newtonsoft.Json": "13.0.1",
-          "System.Drawing.Common": "5.0.0"
+          "System.Drawing.Common": "5.0.0",
+          "System.ValueTuple": "4.5.0"
         }
       },
       "NETStandard.Library": {

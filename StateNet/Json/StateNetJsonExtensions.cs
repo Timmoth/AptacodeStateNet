@@ -7,37 +7,22 @@ using Newtonsoft.Json;
 namespace Aptacode.StateNet.Json
 {
     public static class StateNetJsonExtensions
-    {
-        public static JsonSubtypesConverterBuilder AddStateNetIntExpressions(this JsonSubtypesConverterBuilder builder)
+    { 
+
+        public static ExpressionsSubTypes AddStateNet(this ExpressionsSubTypes subTypes)
         {
-            builder
-                .RegisterSubtype<StateCount>(nameof(StateCount))
-                .RegisterSubtype<StateCountFromEnd>(nameof(StateCountFromEnd))
-                .RegisterSubtype<StateCountStart>(nameof(StateCountStart))
-                .RegisterSubtype<TransitionCount>(nameof(TransitionCount))
-                .RegisterSubtype<TransitionCountFromEnd>(nameof(TransitionCountFromEnd))
-                .RegisterSubtype<TransitionCountFromStart>(nameof(TransitionCountFromStart));
-
-            return builder;
-        }
-
-        public static JsonSubtypesConverterBuilder AddStateNetIntListExpressions(this JsonSubtypesConverterBuilder builder)
-        {
-            builder.RegisterSubtype<Matches>(nameof(Matches));
-
-            return builder;
-        }
-
-
-        public static JsonSerializerSettings AddStateNet(this JsonSerializerSettings settings)
-        {
-            var intExpressions = ExpressionsJsonExtensions.IntExpressions<TransitionHistory>().AddStateNetIntExpressions();
-            var listExpressions = ExpressionsJsonExtensions.ListExpressions<int, TransitionHistory>().AddStateNetIntListExpressions();
-            var boolExpressions = ExpressionsJsonExtensions.BoolExpressions<TransitionHistory>().ExtendBoolExpressions<int, TransitionHistory>();
-
-            settings.Add(intExpressions).Add(boolExpressions).Add(listExpressions);
-
-            return settings;
+            return subTypes
+                .AddInt<TransitionHistory>()
+                .AddBool<TransitionHistory>()
+                .AddBool<int, TransitionHistory>()
+                .AddList<int, TransitionHistory>()
+                .Add<Matches>()
+                .Add<StateCount>()
+                .Add<StateCountFromEnd>()
+                .Add<StateCountStart>()
+                .Add<TransitionCount>()
+                .Add<TransitionCountFromEnd>()
+                .Add<TransitionCountFromStart>();
         }
     }
 }

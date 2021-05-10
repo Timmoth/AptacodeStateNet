@@ -7,10 +7,7 @@ namespace Aptacode.StateNet.PatternMatching
 {
     public class Pattern : IEnumerable<int?>, IEquatable<Pattern>
     {
-        public static readonly Pattern Empty = new Pattern();
-        public string?[] Elements { get; set; }
-        public int?[] HashedElements { get; set; }
-        public int Length { get; set; }
+        public static readonly Pattern Empty = new();
 
         public Pattern(params string[] elements)
         {
@@ -20,13 +17,23 @@ namespace Aptacode.StateNet.PatternMatching
             }
 
             Elements = elements;
-            HashedElements = elements.Select(x => x?.GetDeterministicHashCode()).ToArray();
+            HashedElements = elements.Select(x => x?.GetDeterministicHashCode());
             Length = elements.Length;
         }
 
-        public IEnumerator<int?> GetEnumerator() => HashedElements.ToList().GetEnumerator();
+        public IEnumerable<string?> Elements { get; set; }
+        public IEnumerable<int?> HashedElements { get; set; }
+        public int Length { get; set; }
 
-        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+        public IEnumerator<int?> GetEnumerator()
+        {
+            return HashedElements.ToList().GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
 
         #region IEquatable
 
@@ -37,9 +44,15 @@ namespace Aptacode.StateNet.PatternMatching
                 .Aggregate((total, nextCode) => total ^ nextCode);
         }
 
-        public override bool Equals(object obj) => obj is Pattern pattern && Equals(pattern);
+        public override bool Equals(object obj)
+        {
+            return obj is Pattern pattern && Equals(pattern);
+        }
 
-        public bool Equals(Pattern other) => this == other;
+        public bool Equals(Pattern other)
+        {
+            return this == other;
+        }
 
         public static bool operator ==(Pattern lhs, Pattern rhs)
         {
@@ -51,7 +64,10 @@ namespace Aptacode.StateNet.PatternMatching
             return lhs?.Length == null || lhs.HashedElements.SequenceEqual(rhs?.HashedElements);
         }
 
-        public static bool operator !=(Pattern lhs, Pattern rhs) => !(lhs == rhs);
+        public static bool operator !=(Pattern lhs, Pattern rhs)
+        {
+            return !(lhs == rhs);
+        }
 
         #endregion
     }

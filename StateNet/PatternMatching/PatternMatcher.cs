@@ -5,7 +5,7 @@ namespace Aptacode.StateNet.PatternMatching
 {
     public class PatternMatcher
     {
-        public readonly List<int> MatchList = new List<int>();
+        public readonly List<int> MatchList = new();
 
         public readonly Pattern Pattern;
 

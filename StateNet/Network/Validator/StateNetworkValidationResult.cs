@@ -11,10 +11,14 @@
         public string Message { get; }
         public bool Success { get; }
 
-        public static StateNetworkValidationResult Fail(string message) =>
-            new StateNetworkValidationResult(message, false);
+        public static StateNetworkValidationResult Fail(string message)
+        {
+            return new(message, false);
+        }
 
-        public static StateNetworkValidationResult Ok(string message) =>
-            new StateNetworkValidationResult(message, true);
+        public static StateNetworkValidationResult Ok(string message)
+        {
+            return new(message, true);
+        }
     }
 }

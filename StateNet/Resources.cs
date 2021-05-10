@@ -11,7 +11,9 @@
         public static readonly string SUCCESS = "Success.";
         public static readonly string NO_STATES = "No states were given.";
 
-        public static string NO_AVAILABLE_CONNECTION(string currentState, string input) =>
-            $"There are no available connections from {currentState} for {input}.";
+        public static string NO_AVAILABLE_CONNECTION(string currentState, string input)
+        {
+            return $"There are no available connections from {currentState} for {input}.";
+        }
     }
 }

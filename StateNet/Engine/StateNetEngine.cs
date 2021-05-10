@@ -27,10 +27,15 @@ namespace Aptacode.StateNet.Engine
 
         public event EventHandler<Transition>? OnTransition;
 
-        public IEnumerable<string> GetAvailableInputs() => _network.GetInputs(CurrentState);
+        public IEnumerable<string> GetAvailableInputs()
+        {
+            return _network.GetInputs(CurrentState);
+        }
 
-        public IEnumerable<Connection> GetAvailableConnections(string input) =>
-            _network.GetConnections(CurrentState, input);
+        public IEnumerable<Connection> GetAvailableConnections(string input)
+        {
+            return _network.GetConnections(CurrentState, input);
+        }
 
         public TransitionResult Apply(string input)
         {

@@ -7,15 +7,26 @@ namespace Aptacode.StateNet.PatternMatching.Expressions
 {
     public class TransitionCount : UnaryExpression<int, TransitionHistory>
     {
-        public TransitionCount(string state, string input) : base(new Matches(new Pattern(state, input)).Count()) { }
+        public TransitionCount(string state, string input) : base(new Matches(new Pattern(state, input)).Count())
+        {
+        }
 
-        public override int Interpret(TransitionHistory context) => Expression.Interpret(context);
+        public override int Interpret(TransitionHistory context)
+        {
+            return Expression.Interpret(context);
+        }
 
         #region IEquatable
 
-        public override bool Equals(object obj) => obj is TransitionCount expression && Equals(expression);
+        public override bool Equals(object obj)
+        {
+            return obj is TransitionCount expression && Equals(expression);
+        }
 
-        public override bool Equals(IExpression<int, TransitionHistory> other) => other is TransitionCount expression && expression == this;
+        public override bool Equals(IExpression<int, TransitionHistory> other)
+        {
+            return other is TransitionCount expression && expression == this;
+        }
 
         public static bool operator ==(TransitionCount lhs, TransitionCount rhs)
         {
@@ -27,7 +38,10 @@ namespace Aptacode.StateNet.PatternMatching.Expressions
             return lhs.Expression.Equals(rhs.Expression);
         }
 
-        public static bool operator !=(TransitionCount lhs, TransitionCount rhs) => !(lhs == rhs);
+        public static bool operator !=(TransitionCount lhs, TransitionCount rhs)
+        {
+            return !(lhs == rhs);
+        }
 
         #endregion
     }

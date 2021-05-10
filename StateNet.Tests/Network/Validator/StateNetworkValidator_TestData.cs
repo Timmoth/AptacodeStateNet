@@ -7,7 +7,7 @@ namespace StateNet.Tests.Network.Validator
 {
     public class StateNetworkValidator_TestData : IEnumerable<object[]>
     {
-        private readonly List<object[]> _data = new List<object[]>
+        private readonly List<object[]> _data = new()
         {
             new object[]
             {
@@ -36,8 +36,14 @@ namespace StateNet.Tests.Network.Validator
                 {StateNetwork_Helpers.Invalid_UnusableInput_Network, Resources.UNUSABLE_INPUTS, false}
         };
 
-        public IEnumerator<object[]> GetEnumerator() => _data.GetEnumerator();
+        public IEnumerator<object[]> GetEnumerator()
+        {
+            return _data.GetEnumerator();
+        }
 
-        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
     }
 }

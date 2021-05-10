@@ -7,7 +7,7 @@ namespace StateNet.Tests.Network.Helpers
     public static class StateNetworkBuilder_Helpers
     {
         private static readonly ExpressionFactory<TransitionHistory> Expressions =
-            new ExpressionFactory<TransitionHistory>();
+            new();
 
         public static NetworkBuilder Minimal_Valid_Connected_StaticWeight_NetworkBuilder =>
             NetworkBuilder.New.SetStartState("a")

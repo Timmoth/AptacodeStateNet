@@ -14,7 +14,7 @@ namespace StateNet.Tests.Engine
 {
     public class Engine_Tests
     {
-        private readonly ExpressionFactory<TransitionHistory> _expressions = new ExpressionFactory<TransitionHistory>();
+        private readonly ExpressionFactory<TransitionHistory> _expressions = new();
 
         [Fact]
         public void CurrentStateChanges_After_SuccessfulTransition()

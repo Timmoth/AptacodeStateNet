@@ -10,10 +10,10 @@ namespace Aptacode.StateNet.Engine.Transitions
         private readonly StateNetwork _network;
 
         private readonly Dictionary<Pattern, PatternMatcher>
-            _patternMatches = new Dictionary<Pattern, PatternMatcher>();
+            _patternMatches = new();
 
-        private readonly List<string> _stringTransitionHistory = new List<string>();
-        private readonly List<int> _transitionHistory = new List<int>();
+        private readonly List<string> _stringTransitionHistory = new();
+        private readonly List<int> _transitionHistory = new();
 
         public TransitionHistory(StateNetwork network)
         {
@@ -41,7 +41,10 @@ namespace Aptacode.StateNet.Engine.Transitions
             }
         }
 
-        public IReadOnlyList<int> GetTransitionHistory() => _transitionHistory.AsReadOnly();
+        public IReadOnlyList<int> GetTransitionHistory()
+        {
+            return _transitionHistory.AsReadOnly();
+        }
 
         public IEnumerable<int> GetMatches(Pattern pattern)
         {
@@ -71,6 +74,9 @@ namespace Aptacode.StateNet.Engine.Transitions
             }
         }
 
-        public override string ToString() => string.Join(",", _stringTransitionHistory);
+        public override string ToString()
+        {
+            return string.Join(",", _stringTransitionHistory);
+        }
     }
 }

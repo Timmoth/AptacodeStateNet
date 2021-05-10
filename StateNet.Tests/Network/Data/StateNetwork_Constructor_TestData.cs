@@ -7,7 +7,7 @@ namespace StateNet.Tests.Network.Data
 {
     public class StateNetwork_Constructor_TestData : IEnumerable<object[]>
     {
-        private readonly List<object[]> _data = new List<object[]>
+        private readonly List<object[]> _data = new()
         {
             new object[]
             {
@@ -27,8 +27,14 @@ namespace StateNet.Tests.Network.Data
             } //Constructor throws ArgumentNullException when the StartState is null
         };
 
-        public IEnumerator<object[]> GetEnumerator() => _data.GetEnumerator();
+        public IEnumerator<object[]> GetEnumerator()
+        {
+            return _data.GetEnumerator();
+        }
 
-        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
     }
 }

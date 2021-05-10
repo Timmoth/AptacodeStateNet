@@ -11,15 +11,26 @@ namespace Aptacode.StateNet.PatternMatching.Expressions
     {
         public TransitionCountFromStart(string state, string input, int takeFirst) : base(
             new Matches(new Pattern(state, input)).TakeFirst(new ConstantInteger<TransitionHistory>(takeFirst))
-                .Count()) { }
+                .Count())
+        {
+        }
 
-        public override int Interpret(TransitionHistory context) => Expression.Interpret(context);
+        public override int Interpret(TransitionHistory context)
+        {
+            return Expression.Interpret(context);
+        }
 
         #region IEquatable
 
-        public override bool Equals(object obj) => obj is TransitionCountFromStart expression && Equals(expression);
+        public override bool Equals(object obj)
+        {
+            return obj is TransitionCountFromStart expression && Equals(expression);
+        }
 
-        public override bool Equals(IExpression<int, TransitionHistory> other) => other is TransitionCountFromStart expression && expression == this;
+        public override bool Equals(IExpression<int, TransitionHistory> other)
+        {
+            return other is TransitionCountFromStart expression && expression == this;
+        }
 
         public static bool operator ==(TransitionCountFromStart lhs, TransitionCountFromStart rhs)
         {
@@ -31,7 +42,10 @@ namespace Aptacode.StateNet.PatternMatching.Expressions
             return lhs.Expression.Equals(rhs.Expression);
         }
 
-        public static bool operator !=(TransitionCountFromStart lhs, TransitionCountFromStart rhs) => !(lhs == rhs);
+        public static bool operator !=(TransitionCountFromStart lhs, TransitionCountFromStart rhs)
+        {
+            return !(lhs == rhs);
+        }
 
         #endregion
     }

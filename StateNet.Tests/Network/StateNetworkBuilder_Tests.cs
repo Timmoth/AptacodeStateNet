@@ -1,8 +1,8 @@
-﻿using Aptacode.Expressions;
+﻿using System.Linq;
+using Aptacode.Expressions;
 using Aptacode.StateNet.Engine.Transitions;
 using Aptacode.StateNet.Network;
 using StateNet.Tests.Network.Helpers;
-using System.Linq;
 using Xunit;
 
 namespace StateNet.Tests.Network
@@ -10,7 +10,7 @@ namespace StateNet.Tests.Network
     public class StateNetworkBuilder_Tests
     {
         private static readonly ExpressionFactory<TransitionHistory> Expressions =
-            new ExpressionFactory<TransitionHistory>();
+            new();
 
         private readonly TransitionHistory _context;
 

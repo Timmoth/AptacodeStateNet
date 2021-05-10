@@ -8,9 +8,9 @@ namespace Aptacode.StateNet.Json
 {
     public static class StateNetJsonExtensions
     {
-        public static JsonSubtypesConverterBuilder AddPatternExpressions(this JsonSubtypesConverterBuilder builder)
+        public static JsonSubtypesConverterBuilder AddStateNetIntExpressions(this JsonSubtypesConverterBuilder builder)
         {
-            builder.RegisterSubtype<Matches>(nameof(Matches))
+            builder
                 .RegisterSubtype<StateCount>(nameof(StateCount))
                 .RegisterSubtype<StateCountFromEnd>(nameof(StateCountFromEnd))
                 .RegisterSubtype<StateCountStart>(nameof(StateCountStart))
@@ -21,13 +21,21 @@ namespace Aptacode.StateNet.Json
             return builder;
         }
 
+        public static JsonSubtypesConverterBuilder AddStateNetIntListExpressions(this JsonSubtypesConverterBuilder builder)
+        {
+            builder.RegisterSubtype<Matches>(nameof(Matches));
+
+            return builder;
+        }
+
 
         public static JsonSerializerSettings AddStateNet(this JsonSerializerSettings settings)
         {
-            var intExpressions = ExpressionsJsonExtensions.IntExpressions<TransitionHistory>().AddPatternExpressions();
+            var intExpressions = ExpressionsJsonExtensions.IntExpressions<TransitionHistory>().AddStateNetIntExpressions();
+            var listExpressions = ExpressionsJsonExtensions.ListExpressions<int, TransitionHistory>().AddStateNetIntListExpressions();
             var boolExpressions = ExpressionsJsonExtensions.BoolExpressions<TransitionHistory>().ExtendBoolExpressions<int, TransitionHistory>();
 
-            settings.Add(intExpressions).Add(boolExpressions);
+            settings.Add(intExpressions).Add(boolExpressions).Add(listExpressions);
 
             return settings;
         }

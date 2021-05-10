@@ -10,8 +10,8 @@ namespace Aptacode.StateNet.Network.Validator
 {
     public class MatchesVisitor : ExpressionVisitor<TransitionHistory>
     {
-        private readonly HashSet<string?> _dependencies = new HashSet<string?>();
-        private readonly HashSet<Pattern> _patterns = new HashSet<Pattern>();
+        private readonly HashSet<string?> _dependencies = new();
+        private readonly HashSet<Pattern> _patterns = new();
 
         public IReadOnlyList<string?> Dependencies => _dependencies.ToList();
         public IReadOnlyList<Pattern> Patterns => _patterns.ToList();

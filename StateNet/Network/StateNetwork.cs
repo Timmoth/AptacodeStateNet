@@ -7,12 +7,6 @@ namespace Aptacode.StateNet.Network
 {
     public sealed class StateNetwork : IEquatable<StateNetwork>
     {
-        public Dictionary<string, Dictionary<string, IEnumerable<Connection>>> StateDictionary { get; set; }
-
-        public IEnumerable<Pattern> Patterns { get; set; }
-
-        public string StartState { get; set; }
-
         public StateNetwork(string startState,
             Dictionary<string, Dictionary<string, IEnumerable<Connection>>> stateDictionary,
             IEnumerable<Pattern> patterns)
@@ -32,6 +26,12 @@ namespace Aptacode.StateNet.Network
             Patterns = patterns;
             StartState = startState;
         }
+
+        public Dictionary<string, Dictionary<string, IEnumerable<Connection>>> StateDictionary { get; set; }
+
+        public IEnumerable<Pattern> Patterns { get; set; }
+
+        public string StartState { get; set; }
 
         public IEnumerable<Connection> GetConnections(string state, string input)
         {
@@ -70,23 +70,32 @@ namespace Aptacode.StateNet.Network
             return StateDictionary.Values.SelectMany(c => c.Keys);
         }
 
-        public IEnumerable<string> GetAllStates() => StateDictionary.Keys;
+        public IEnumerable<string> GetAllStates()
+        {
+            return StateDictionary.Keys;
+        }
 
 
         #region IEquatable
 
-        public override bool Equals(object obj) => obj is StateNetwork stateNetwork && Equals(stateNetwork);
+        public override bool Equals(object obj)
+        {
+            return obj is StateNetwork stateNetwork && Equals(stateNetwork);
+        }
 
-        public bool Equals(StateNetwork other) => this == other;
+        public bool Equals(StateNetwork other)
+        {
+            return this == other;
+        }
 
         public static bool operator ==(StateNetwork lhs, StateNetwork rhs)
         {
-            if(lhs is null || rhs is null)
+            if (lhs is null || rhs is null)
             {
                 return lhs is null && rhs is null;
             }
 
-            if(lhs.StartState != rhs.StartState)
+            if (lhs.StartState != rhs.StartState)
             {
                 return false;
             }
@@ -100,7 +109,7 @@ namespace Aptacode.StateNet.Network
             {
                 return false;
             }
-            
+
             if (!lhs.GetAllConnections().SequenceEqual(rhs.GetAllConnections()))
             {
                 return false;
@@ -109,7 +118,10 @@ namespace Aptacode.StateNet.Network
             return true;
         }
 
-        public static bool operator !=(StateNetwork lhs, StateNetwork rhs) => !(lhs == rhs);
+        public static bool operator !=(StateNetwork lhs, StateNetwork rhs)
+        {
+            return !(lhs == rhs);
+        }
 
         #endregion
     }

@@ -14,13 +14,22 @@ namespace Aptacode.StateNet.PatternMatching.Expressions
             Pattern = pattern;
         }
 
-        public override int[] Interpret(TransitionHistory context) => context.GetMatches(Pattern).ToArray();
+        public override int[] Interpret(TransitionHistory context)
+        {
+            return context.GetMatches(Pattern).ToArray();
+        }
 
         #region IEquatable
 
-        public override bool Equals(object obj) => obj is Matches expression && Equals(expression);
+        public override bool Equals(object obj)
+        {
+            return obj is Matches expression && Equals(expression);
+        }
 
-        public override bool Equals(IExpression<int[], TransitionHistory> other) => other is Matches expression && expression == this;
+        public override bool Equals(IExpression<int[], TransitionHistory> other)
+        {
+            return other is Matches expression && expression == this;
+        }
 
         public static bool operator ==(Matches lhs, Matches rhs)
         {
@@ -32,7 +41,10 @@ namespace Aptacode.StateNet.PatternMatching.Expressions
             return lhs.Pattern.Equals(rhs.Pattern);
         }
 
-        public static bool operator !=(Matches lhs, Matches rhs) => !(lhs == rhs);
+        public static bool operator !=(Matches lhs, Matches rhs)
+        {
+            return !(lhs == rhs);
+        }
 
         #endregion
     }

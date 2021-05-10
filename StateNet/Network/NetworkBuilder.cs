@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.Immutable;
 using System.Linq;
 using Aptacode.Expressions;
 using Aptacode.StateNet.Engine.Transitions;
@@ -26,7 +25,7 @@ namespace Aptacode.StateNet.Network
             _connections = new List<(string, string, Connection)>();
         }
 
-        public static NetworkBuilder New => new NetworkBuilder();
+        public static NetworkBuilder New => new();
 
         public NetworkBuilder SetStartState(string startState)
         {

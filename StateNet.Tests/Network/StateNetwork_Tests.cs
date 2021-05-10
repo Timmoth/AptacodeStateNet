@@ -2,12 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using Aptacode.Expressions;
-using Aptacode.Expressions.Json;
 using Aptacode.StateNet.Engine.Transitions;
-using Aptacode.StateNet.Json;
 using Aptacode.StateNet.Network;
 using Aptacode.StateNet.PatternMatching;
-using Newtonsoft.Json;
 using StateNet.Tests.Network.Data;
 using StateNet.Tests.Network.Helpers;
 using Xunit;
@@ -16,7 +13,7 @@ namespace StateNet.Tests.Network
 {
     public class StateNetwork_Tests
     {
-        private readonly ExpressionFactory<TransitionHistory> _expressions = new ExpressionFactory<TransitionHistory>();
+        private readonly ExpressionFactory<TransitionHistory> _expressions = new();
 
         [Theory]
         [ClassData(typeof(StateNetwork_Constructor_TestData))]

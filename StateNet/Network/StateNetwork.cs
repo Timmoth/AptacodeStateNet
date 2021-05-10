@@ -7,12 +7,11 @@ namespace Aptacode.StateNet.Network
 {
     public sealed class StateNetwork
     {
-        private readonly IReadOnlyDictionary<string, IReadOnlyDictionary<string, IReadOnlyList<Connection>>>
-            _stateDictionary;
+        public IReadOnlyDictionary<string, IReadOnlyDictionary<string, IReadOnlyList<Connection>>> StateDictionary { get; set; }
 
-        public readonly IReadOnlyList<Pattern> Patterns;
+        public IReadOnlyList<Pattern> Patterns { get; set; }
 
-        public readonly string StartState;
+        public string StartState { get; set; }
 
         public StateNetwork(string startState,
             IReadOnlyDictionary<string, IReadOnlyDictionary<string, IReadOnlyList<Connection>>> stateDictionary,
@@ -23,9 +22,9 @@ namespace Aptacode.StateNet.Network
                 throw new ArgumentNullException(Resources.INVALID_START_STATE);
             }
 
-            _stateDictionary = stateDictionary ?? throw new ArgumentNullException(Resources.NO_STATES);
+            StateDictionary = stateDictionary ?? throw new ArgumentNullException(Resources.NO_STATES);
 
-            if (!_stateDictionary.Keys.Any())
+            if (!StateDictionary.Keys.Any())
             {
                 throw new ArgumentException(Resources.NO_STATES);
             }
@@ -36,7 +35,7 @@ namespace Aptacode.StateNet.Network
 
         public IReadOnlyList<Connection> GetConnections(string state, string input)
         {
-            if (!_stateDictionary.TryGetValue(state, out var inputs))
+            if (!StateDictionary.TryGetValue(state, out var inputs))
             {
                 return new Connection[0];
             }
@@ -46,14 +45,14 @@ namespace Aptacode.StateNet.Network
 
         public IReadOnlyList<Connection> GetConnections(string state)
         {
-            return !_stateDictionary.TryGetValue(state, out var inputs)
+            return !StateDictionary.TryGetValue(state, out var inputs)
                 ? new Connection[0]
                 : inputs.Values.SelectMany(c => c).ToArray();
         }
 
         public IReadOnlyList<string> GetInputs(string state)
         {
-            if (!_stateDictionary.TryGetValue(state, out var inputs))
+            if (!StateDictionary.TryGetValue(state, out var inputs))
             {
                 return new string[0];
             }
@@ -63,14 +62,14 @@ namespace Aptacode.StateNet.Network
 
         public IReadOnlyList<Connection> GetAllConnections()
         {
-            return _stateDictionary.Values.SelectMany(c => c.Values.SelectMany(c => c)).ToList();
+            return StateDictionary.Values.SelectMany(c => c.Values.SelectMany(c => c)).ToList();
         }
 
         public IReadOnlyList<string> GetAllInputs()
         {
-            return _stateDictionary.Values.SelectMany(c => c.Keys).ToList();
+            return StateDictionary.Values.SelectMany(c => c.Keys).ToList();
         }
 
-        public IReadOnlyList<string> GetAllStates() => _stateDictionary.Keys.ToList();
+        public IReadOnlyList<string> GetAllStates() => StateDictionary.Keys.ToList();
     }
 }

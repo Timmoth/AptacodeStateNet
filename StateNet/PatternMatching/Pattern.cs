@@ -8,10 +8,9 @@ namespace Aptacode.StateNet.PatternMatching
     public class Pattern : IEnumerable<int?>, IEquatable<Pattern>
     {
         public static readonly Pattern Empty = new Pattern();
-        public readonly string?[] Elements;
-
-        public readonly int?[] HashedElements;
-        public readonly int Length;
+        public string?[] Elements { get; set; }
+        public int?[] HashedElements { get; set; }
+        public int Length { get; set; }
 
         public Pattern(params string[] elements)
         {

@@ -4,11 +4,13 @@
     ".NETCoreApp,Version=v3.1": {
       "Aptacode.Expressions": {
         "type": "Direct",
-        "requested": "[1.0.3, )",
-        "resolved": "1.0.3",
-        "contentHash": "Wrm1mieWjwyBFyRaENiTY8vPSeY0EgZSzTXgleSYox4FQPRgM9VvT8gCMStgNyMFsDI29ZKVYRE6lP266bGRjA==",
+        "requested": "[1.0.5, )",
+        "resolved": "1.0.5",
+        "contentHash": "3IQafHGRRGHHxRT3hWOlAjrQNLdeh1QrghNj+lCYE7hJc7V63GcHiG6UO/N2WQQVNjBYcHpZiz9RZhun9Y38iw==",
         "dependencies": {
+          "JsonSubTypes": "1.8.0",
           "Microsoft.CSharp": "4.7.0",
+          "Newtonsoft.Json": "13.0.1",
           "System.Drawing.Common": "5.0.0"
         }
       },
@@ -23,6 +25,14 @@
         "requested": "[4.5.0, )",
         "resolved": "4.5.0",
         "contentHash": "okurQJO6NRE/apDIP23ajJ0hpiNmJ+f0BwOlB/cSqTLQlw5upkf+5+96+iG2Jw40G1fCVCyPz/FhIABUjMR+RQ=="
+      },
+      "JsonSubTypes": {
+        "type": "Transitive",
+        "resolved": "1.8.0",
+        "contentHash": "pBChxyl9mt0F1s1giHlN6yQ9WWb5FljluCNhMnSb7sspPfPRPTrc0a0psdu2/FVb5nZu5bQN50OMMaSp8jm8xQ==",
+        "dependencies": {
+          "Newtonsoft.Json": "10.0.1"
+        }
       },
       "Microsoft.CSharp": {
         "type": "Transitive",
@@ -42,6 +52,11 @@
           "Microsoft.NETCore.Platforms": "5.0.0"
         }
       },
+      "Newtonsoft.Json": {
+        "type": "Transitive",
+        "resolved": "13.0.1",
+        "contentHash": "ppPFpBcvxdsfUonNcvITKqLl3bqxWbDCZIzDWHzjpdAHRFfZe0Dw9HmA0+za13IdyrgJwpkDTDA9fHaxOrt20A=="
+      },
       "System.Drawing.Common": {
         "type": "Transitive",
         "resolved": "5.0.0",
@@ -54,11 +69,13 @@
     ".NETFramework,Version=v4.5": {
       "Aptacode.Expressions": {
         "type": "Direct",
-        "requested": "[1.0.3, )",
-        "resolved": "1.0.3",
-        "contentHash": "Wrm1mieWjwyBFyRaENiTY8vPSeY0EgZSzTXgleSYox4FQPRgM9VvT8gCMStgNyMFsDI29ZKVYRE6lP266bGRjA==",
+        "requested": "[1.0.5, )",
+        "resolved": "1.0.5",
+        "contentHash": "3IQafHGRRGHHxRT3hWOlAjrQNLdeh1QrghNj+lCYE7hJc7V63GcHiG6UO/N2WQQVNjBYcHpZiz9RZhun9Y38iw==",
         "dependencies": {
-          "Microsoft.CSharp": "4.7.0"
+          "JsonSubTypes": "1.8.0",
+          "Microsoft.CSharp": "4.7.0",
+          "Newtonsoft.Json": "13.0.1"
         }
       },
       "System.Collections.Immutable": {
@@ -73,20 +90,35 @@
         "resolved": "4.5.0",
         "contentHash": "okurQJO6NRE/apDIP23ajJ0hpiNmJ+f0BwOlB/cSqTLQlw5upkf+5+96+iG2Jw40G1fCVCyPz/FhIABUjMR+RQ=="
       },
+      "JsonSubTypes": {
+        "type": "Transitive",
+        "resolved": "1.8.0",
+        "contentHash": "pBChxyl9mt0F1s1giHlN6yQ9WWb5FljluCNhMnSb7sspPfPRPTrc0a0psdu2/FVb5nZu5bQN50OMMaSp8jm8xQ==",
+        "dependencies": {
+          "Newtonsoft.Json": "10.0.1"
+        }
+      },
       "Microsoft.CSharp": {
         "type": "Transitive",
         "resolved": "4.7.0",
         "contentHash": "pTj+D3uJWyN3My70i2Hqo+OXixq3Os2D1nJ2x92FFo6sk8fYS1m1WLNTs0Dc1uPaViH0YvEEwvzddQ7y4rhXmA=="
+      },
+      "Newtonsoft.Json": {
+        "type": "Transitive",
+        "resolved": "13.0.1",
+        "contentHash": "ppPFpBcvxdsfUonNcvITKqLl3bqxWbDCZIzDWHzjpdAHRFfZe0Dw9HmA0+za13IdyrgJwpkDTDA9fHaxOrt20A=="
       }
     },
     ".NETStandard,Version=v2.0": {
       "Aptacode.Expressions": {
         "type": "Direct",
-        "requested": "[1.0.3, )",
-        "resolved": "1.0.3",
-        "contentHash": "Wrm1mieWjwyBFyRaENiTY8vPSeY0EgZSzTXgleSYox4FQPRgM9VvT8gCMStgNyMFsDI29ZKVYRE6lP266bGRjA==",
+        "requested": "[1.0.5, )",
+        "resolved": "1.0.5",
+        "contentHash": "3IQafHGRRGHHxRT3hWOlAjrQNLdeh1QrghNj+lCYE7hJc7V63GcHiG6UO/N2WQQVNjBYcHpZiz9RZhun9Y38iw==",
         "dependencies": {
+          "JsonSubTypes": "1.8.0",
           "Microsoft.CSharp": "4.7.0",
+          "Newtonsoft.Json": "13.0.1",
           "System.Drawing.Common": "5.0.0"
         }
       },
@@ -114,6 +146,14 @@
         "resolved": "4.5.0",
         "contentHash": "okurQJO6NRE/apDIP23ajJ0hpiNmJ+f0BwOlB/cSqTLQlw5upkf+5+96+iG2Jw40G1fCVCyPz/FhIABUjMR+RQ=="
       },
+      "JsonSubTypes": {
+        "type": "Transitive",
+        "resolved": "1.8.0",
+        "contentHash": "pBChxyl9mt0F1s1giHlN6yQ9WWb5FljluCNhMnSb7sspPfPRPTrc0a0psdu2/FVb5nZu5bQN50OMMaSp8jm8xQ==",
+        "dependencies": {
+          "Newtonsoft.Json": "10.0.1"
+        }
+      },
       "Microsoft.CSharp": {
         "type": "Transitive",
         "resolved": "4.7.0",
@@ -123,6 +163,11 @@
         "type": "Transitive",
         "resolved": "1.1.0",
         "contentHash": "kz0PEW2lhqygehI/d6XsPCQzD7ff7gUJaVGPVETX611eadGsA3A877GdSlU0LRVMCTH/+P3o2iDTak+S08V2+A=="
+      },
+      "Newtonsoft.Json": {
+        "type": "Transitive",
+        "resolved": "13.0.1",
+        "contentHash": "ppPFpBcvxdsfUonNcvITKqLl3bqxWbDCZIzDWHzjpdAHRFfZe0Dw9HmA0+za13IdyrgJwpkDTDA9fHaxOrt20A=="
       },
       "System.Buffers": {
         "type": "Transitive",

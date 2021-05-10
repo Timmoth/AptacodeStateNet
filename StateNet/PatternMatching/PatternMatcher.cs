@@ -35,7 +35,7 @@ namespace Aptacode.StateNet.PatternMatching
 
         private bool IsNextInPattern(int hashCode)
         {
-            var patternElement = Pattern.ElementAt(PatternIndex);
+            var patternElement = Pattern.HashedElements.ElementAt(PatternIndex);
             if (patternElement is not null && patternElement == hashCode)
             {
                 return true;

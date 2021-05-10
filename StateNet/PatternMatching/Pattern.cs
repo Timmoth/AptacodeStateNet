@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Aptacode.StateNet.PatternMatching
 {
-    public class Pattern : IEnumerable<int?>, IEquatable<Pattern>
+    public class Pattern : IEquatable<Pattern>
     {
         public static readonly Pattern Empty = new();
 
@@ -24,16 +24,6 @@ namespace Aptacode.StateNet.PatternMatching
         public IEnumerable<string?> Elements { get; set; }
         public IEnumerable<int?> HashedElements { get; set; }
         public int Length { get; set; }
-
-        public IEnumerator<int?> GetEnumerator()
-        {
-            return HashedElements.ToList().GetEnumerator();
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
 
         #region IEquatable
 

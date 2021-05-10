@@ -13,7 +13,8 @@ namespace StateNet.Tests.Json
         public void StateNetSerialisationTest()
         {
             //Arrange
-            var network = StateNetwork_Helpers.State_WithMultiple_Inputs_Network;
+            var network = StateNetwork_Helpers.State_WithMultiple_Inputs_WithPatterns_Network;
+            
 
             //Act
             var expressionSubtypes = new ExpressionsSubTypes().AddStateNet();

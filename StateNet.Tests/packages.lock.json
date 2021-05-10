@@ -4,9 +4,9 @@
     ".NETCoreApp,Version=v5.0": {
       "Aptacode.Expressions": {
         "type": "Direct",
-        "requested": "[1.0.7, )",
-        "resolved": "1.0.7",
-        "contentHash": "XdSj0lKriVoGFQbeKLlNUKnbCKHDKyoa5t94PDLxpo6zAcFZA1df0yavdFuBKFVfwIjlyjp4Fg7hC6uU0QBx+Q==",
+        "requested": "[1.0.9, )",
+        "resolved": "1.0.9",
+        "contentHash": "nc6WUrk4xqmf+PuPASkqSfDBNqFwhK6anPn+a8RL57csPjauvBRN+oFmhZGDETL5UpYQVp4FDH/g9T51s2mAJg==",
         "dependencies": {
           "JsonSubTypes": "1.8.0",
           "Microsoft.CSharp": "4.7.0",
@@ -1197,7 +1197,7 @@
       "Aptacode.StateNet": {
         "type": "Project",
         "dependencies": {
-          "Aptacode.Expressions": "1.0.7",
+          "Aptacode.Expressions": "1.0.9",
           "System.Collections.Immutable": "5.0.0",
           "System.ValueTuple": "4.5.0"
         }

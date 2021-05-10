@@ -25,7 +25,7 @@ namespace Aptacode.StateNet.Json
         public static JsonSerializerSettings AddStateNet(this JsonSerializerSettings settings)
         {
             var intExpressions = ExpressionsJsonExtensions.IntExpressions<TransitionHistory>().AddPatternExpressions();
-            var boolExpressions = ExpressionsJsonExtensions.BoolExpressions<TransitionHistory>().AddBoolExpressions<int, TransitionHistory>();
+            var boolExpressions = ExpressionsJsonExtensions.BoolExpressions<TransitionHistory>().ExtendBoolExpressions<int, TransitionHistory>();
 
             settings.Add(intExpressions).Add(boolExpressions);
 

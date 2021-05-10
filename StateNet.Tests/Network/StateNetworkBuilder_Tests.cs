@@ -2,6 +2,7 @@
 using Aptacode.StateNet.Engine.Transitions;
 using Aptacode.StateNet.Network;
 using StateNet.Tests.Network.Helpers;
+using System.Linq;
 using Xunit;
 
 namespace StateNet.Tests.Network
@@ -22,10 +23,10 @@ namespace StateNet.Tests.Network
             //Act
             var sut = networkBuilder.AddConnection("a", "1", "b", Expressions.Int(1)).Build();
             //Assert
-            Assert.True(sut.Network.GetAllConnections()[0].Target ==
+            Assert.True(sut.Network.GetAllConnections().ElementAt(0).Target ==
                         new Connection("b", Expressions.Int(1)).Target);
             Assert.True(Expressions
-                .EqualTo(sut.Network.GetAllConnections()[0].Expression, Expressions.Int(1))
+                .EqualTo(sut.Network.GetAllConnections().ElementAt(0).Expression, Expressions.Int(1))
                 .Interpret(_context));
             // Assert.Contains(new Connection("b", _expressions.Int(1)), sut.Network.GetAllConnections(),);
         }
@@ -54,7 +55,7 @@ namespace StateNet.Tests.Network
             var result = sut.Build();
 
             Assert.Empty(result.Network.GetConnections("a", "1"));
-            Assert.Equal(1, result.Network.GetConnections("a", "2").Count);
+            Assert.Equal(1, result.Network.GetConnections("a", "2").Count());
         }
 
         [Fact]
@@ -73,8 +74,8 @@ namespace StateNet.Tests.Network
             //Asset
             Assert.Empty(result.Network.GetConnections("a", "1"));
             Assert.Empty(result.Network.GetConnections("a", "2"));
-            Assert.Equal(1, result.Network.GetConnections("a").Count);
-            Assert.Equal(1, result.Network.GetConnections("a", "3").Count);
+            Assert.Equal(1, result.Network.GetConnections("a").Count());
+            Assert.Equal(1, result.Network.GetConnections("a", "3").Count());
         }
 
         [Fact]
@@ -92,9 +93,9 @@ namespace StateNet.Tests.Network
 
             //Asset
             Assert.Empty(result.Network.GetConnections("a", "1"));
-            Assert.Equal(1, result.Network.GetConnections("a", "2").Count);
-            Assert.Equal(1, result.Network.GetConnections("a", "3").Count);
-            Assert.Equal(2, result.Network.GetConnections("a").Count);
+            Assert.Equal(1, result.Network.GetConnections("a", "2").Count());
+            Assert.Equal(1, result.Network.GetConnections("a", "3").Count());
+            Assert.Equal(2, result.Network.GetConnections("a").Count());
         }
 
         [Fact]
@@ -113,8 +114,8 @@ namespace StateNet.Tests.Network
             //Asset
             Assert.Empty(result.Network.GetConnections("a", "1"));
             Assert.Empty(result.Network.GetConnections("a", "2"));
-            Assert.Equal(1, result.Network.GetConnections("a").Count);
-            Assert.Equal(1, result.Network.GetConnections("a", "3").Count);
+            Assert.Equal(1, result.Network.GetConnections("a").Count());
+            Assert.Equal(1, result.Network.GetConnections("a", "3").Count());
         }
 
         [Fact]
@@ -131,8 +132,8 @@ namespace StateNet.Tests.Network
 
             //Asset
             Assert.Empty(result.Network.GetConnections("a", "1"));
-            Assert.Equal(1, result.Network.GetConnections("a").Count);
-            Assert.Equal(1, result.Network.GetConnections("a", "2").Count);
+            Assert.Equal(1, result.Network.GetConnections("a").Count());
+            Assert.Equal(1, result.Network.GetConnections("a", "2").Count());
         }
 
         [Fact]

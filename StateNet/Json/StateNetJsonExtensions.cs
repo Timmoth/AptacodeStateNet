@@ -1,11 +1,12 @@
-﻿using Aptacode.Expressions;
+﻿using Aptacode.Expressions.Json;
+using Aptacode.StateNet.Engine.Transitions;
 using Aptacode.StateNet.PatternMatching.Expressions;
 using JsonSubTypes;
 using Newtonsoft.Json;
 
 namespace Aptacode.StateNet.Json
 {
-    public static class JsonExtensions
+    public static class StateNetJsonExtensions
     {
         public static JsonSubtypesConverterBuilder AddPatternExpressions(this JsonSubtypesConverterBuilder builder)
         {
@@ -18,6 +19,17 @@ namespace Aptacode.StateNet.Json
                 .RegisterSubtype<TransitionCountFromStart>(nameof(TransitionCountFromStart));
 
             return builder;
+        }
+
+
+        public static JsonSerializerSettings AddStateNet(this JsonSerializerSettings settings)
+        {
+            var intExpressions = ExpressionsJsonExtensions.IntExpressions<TransitionHistory>().AddPatternExpressions();
+            var boolExpressions = ExpressionsJsonExtensions.BoolExpressions<TransitionHistory>().AddBoolExpressions<int, TransitionHistory>();
+
+            settings.Add(intExpressions).Add(boolExpressions);
+
+            return settings;
         }
     }
 }

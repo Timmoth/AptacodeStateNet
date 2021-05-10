@@ -5,17 +5,17 @@ using Aptacode.StateNet.PatternMatching;
 
 namespace Aptacode.StateNet.Network
 {
-    public sealed class StateNetwork
+    public sealed class StateNetwork : IEquatable<StateNetwork>
     {
-        public IReadOnlyDictionary<string, IReadOnlyDictionary<string, IReadOnlyList<Connection>>> StateDictionary { get; set; }
+        public Dictionary<string, Dictionary<string, IEnumerable<Connection>>> StateDictionary { get; set; }
 
-        public IReadOnlyList<Pattern> Patterns { get; set; }
+        public IEnumerable<Pattern> Patterns { get; set; }
 
         public string StartState { get; set; }
 
         public StateNetwork(string startState,
-            IReadOnlyDictionary<string, IReadOnlyDictionary<string, IReadOnlyList<Connection>>> stateDictionary,
-            IReadOnlyList<Pattern> patterns)
+            Dictionary<string, Dictionary<string, IEnumerable<Connection>>> stateDictionary,
+            IEnumerable<Pattern> patterns)
         {
             if (string.IsNullOrEmpty(startState))
             {
@@ -33,7 +33,7 @@ namespace Aptacode.StateNet.Network
             StartState = startState;
         }
 
-        public IReadOnlyList<Connection> GetConnections(string state, string input)
+        public IEnumerable<Connection> GetConnections(string state, string input)
         {
             if (!StateDictionary.TryGetValue(state, out var inputs))
             {
@@ -43,33 +43,74 @@ namespace Aptacode.StateNet.Network
             return inputs.TryGetValue(input, out var connections) ? connections : new Connection[0];
         }
 
-        public IReadOnlyList<Connection> GetConnections(string state)
+        public IEnumerable<Connection> GetConnections(string state)
         {
             return !StateDictionary.TryGetValue(state, out var inputs)
                 ? new Connection[0]
-                : inputs.Values.SelectMany(c => c).ToArray();
+                : inputs.Values.SelectMany(c => c);
         }
 
-        public IReadOnlyList<string> GetInputs(string state)
+        public IEnumerable<string> GetInputs(string state)
         {
             if (!StateDictionary.TryGetValue(state, out var inputs))
             {
                 return new string[0];
             }
 
-            return inputs.Keys.ToList();
+            return inputs.Keys;
         }
 
-        public IReadOnlyList<Connection> GetAllConnections()
+        public IEnumerable<Connection> GetAllConnections()
         {
-            return StateDictionary.Values.SelectMany(c => c.Values.SelectMany(c => c)).ToList();
+            return StateDictionary.Values.SelectMany(c => c.Values.SelectMany(c => c));
         }
 
-        public IReadOnlyList<string> GetAllInputs()
+        public IEnumerable<string> GetAllInputs()
         {
-            return StateDictionary.Values.SelectMany(c => c.Keys).ToList();
+            return StateDictionary.Values.SelectMany(c => c.Keys);
         }
 
-        public IReadOnlyList<string> GetAllStates() => StateDictionary.Keys.ToList();
+        public IEnumerable<string> GetAllStates() => StateDictionary.Keys;
+
+
+        #region IEquatable
+
+        public override bool Equals(object obj) => obj is StateNetwork stateNetwork && Equals(stateNetwork);
+
+        public bool Equals(StateNetwork other) => this == other;
+
+        public static bool operator ==(StateNetwork lhs, StateNetwork rhs)
+        {
+            if(lhs is null || rhs is null)
+            {
+                return lhs is null && rhs is null;
+            }
+
+            if(lhs.StartState != rhs.StartState)
+            {
+                return false;
+            }
+
+            if (!lhs.GetAllStates().SequenceEqual(rhs.GetAllStates()))
+            {
+                return false;
+            }
+
+            if (!lhs.GetAllInputs().SequenceEqual(rhs.GetAllInputs()))
+            {
+                return false;
+            }
+            
+            if (!lhs.GetAllConnections().SequenceEqual(rhs.GetAllConnections()))
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        public static bool operator !=(StateNetwork lhs, StateNetwork rhs) => !(lhs == rhs);
+
+        #endregion
     }
 }

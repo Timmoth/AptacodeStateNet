@@ -27,16 +27,16 @@ namespace Aptacode.StateNet.Engine
 
         public event EventHandler<Transition>? OnTransition;
 
-        public IReadOnlyList<string> GetAvailableInputs() => _network.GetInputs(CurrentState);
+        public IEnumerable<string> GetAvailableInputs() => _network.GetInputs(CurrentState);
 
-        public IReadOnlyList<Connection> GetAvailableConnections(string input) =>
+        public IEnumerable<Connection> GetAvailableConnections(string input) =>
             _network.GetConnections(CurrentState, input);
 
         public TransitionResult Apply(string input)
         {
             var connections = _network.GetConnections(CurrentState, input);
 
-            if (connections.Count == 0)
+            if (connections.Count() == 0)
             {
                 return TransitionResult.Fail(Resources.NO_AVAILABLE_CONNECTION(CurrentState, input));
             }

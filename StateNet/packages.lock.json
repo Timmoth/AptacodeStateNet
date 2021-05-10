@@ -4,9 +4,9 @@
     ".NETCoreApp,Version=v3.1": {
       "Aptacode.Expressions": {
         "type": "Direct",
-        "requested": "[1.0.5, )",
-        "resolved": "1.0.5",
-        "contentHash": "3IQafHGRRGHHxRT3hWOlAjrQNLdeh1QrghNj+lCYE7hJc7V63GcHiG6UO/N2WQQVNjBYcHpZiz9RZhun9Y38iw==",
+        "requested": "[1.0.7, )",
+        "resolved": "1.0.7",
+        "contentHash": "XdSj0lKriVoGFQbeKLlNUKnbCKHDKyoa5t94PDLxpo6zAcFZA1df0yavdFuBKFVfwIjlyjp4Fg7hC6uU0QBx+Q==",
         "dependencies": {
           "JsonSubTypes": "1.8.0",
           "Microsoft.CSharp": "4.7.0",
@@ -69,9 +69,9 @@
     ".NETFramework,Version=v4.5": {
       "Aptacode.Expressions": {
         "type": "Direct",
-        "requested": "[1.0.5, )",
-        "resolved": "1.0.5",
-        "contentHash": "3IQafHGRRGHHxRT3hWOlAjrQNLdeh1QrghNj+lCYE7hJc7V63GcHiG6UO/N2WQQVNjBYcHpZiz9RZhun9Y38iw==",
+        "requested": "[1.0.7, )",
+        "resolved": "1.0.7",
+        "contentHash": "XdSj0lKriVoGFQbeKLlNUKnbCKHDKyoa5t94PDLxpo6zAcFZA1df0yavdFuBKFVfwIjlyjp4Fg7hC6uU0QBx+Q==",
         "dependencies": {
           "JsonSubTypes": "1.8.0",
           "Microsoft.CSharp": "4.7.0",
@@ -112,9 +112,9 @@
     ".NETStandard,Version=v2.0": {
       "Aptacode.Expressions": {
         "type": "Direct",
-        "requested": "[1.0.5, )",
-        "resolved": "1.0.5",
-        "contentHash": "3IQafHGRRGHHxRT3hWOlAjrQNLdeh1QrghNj+lCYE7hJc7V63GcHiG6UO/N2WQQVNjBYcHpZiz9RZhun9Y38iw==",
+        "requested": "[1.0.7, )",
+        "resolved": "1.0.7",
+        "contentHash": "XdSj0lKriVoGFQbeKLlNUKnbCKHDKyoa5t94PDLxpo6zAcFZA1df0yavdFuBKFVfwIjlyjp4Fg7hC6uU0QBx+Q==",
         "dependencies": {
           "JsonSubTypes": "1.8.0",
           "Microsoft.CSharp": "4.7.0",

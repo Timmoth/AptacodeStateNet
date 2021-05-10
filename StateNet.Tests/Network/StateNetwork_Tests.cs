@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Aptacode.Expressions;
+using Aptacode.Expressions.Json;
 using Aptacode.StateNet.Engine.Transitions;
+using Aptacode.StateNet.Json;
 using Aptacode.StateNet.Network;
 using Aptacode.StateNet.PatternMatching;
+using Newtonsoft.Json;
 using StateNet.Tests.Network.Data;
 using StateNet.Tests.Network.Helpers;
 using Xunit;
@@ -17,7 +21,7 @@ namespace StateNet.Tests.Network
         [Theory]
         [ClassData(typeof(StateNetwork_Constructor_TestData))]
         public void Constructor_Throws_Exception_Tests(Type exception,
-            IReadOnlyDictionary<string, IReadOnlyDictionary<string, IReadOnlyList<Connection>>> networkDictionary,
+            Dictionary<string, Dictionary<string, IEnumerable<Connection>>> networkDictionary,
             string start) //Tests for each of the 4 cases in which an exception should be thrown by StateNetwork's constructor 
         {
             //Assert
@@ -77,7 +81,7 @@ namespace StateNet.Tests.Network
             var connections = sut.GetConnections("a", "1");
 
             //Assert
-            Assert.Equal(1, connections.Count);
+            Assert.Equal(1, connections.Count());
         }
 
         [Fact]
@@ -90,7 +94,7 @@ namespace StateNet.Tests.Network
             var connections = sut.GetConnections("a", "1");
 
             //Assert
-            Assert.Equal(1, connections.Count);
+            Assert.Equal(1, connections.Count());
         }
 
 

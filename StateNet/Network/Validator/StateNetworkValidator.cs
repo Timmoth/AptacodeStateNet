@@ -57,7 +57,7 @@ namespace Aptacode.StateNet.Network.Validator
         }
 
         private static IEnumerable<string> GetUsableInputs(StateNetwork network, string state,
-            IReadOnlyList<string> inputs)
+            IEnumerable<string> inputs)
         {
             return inputs.Where(input => network.GetConnections(state, input).Any());
         }

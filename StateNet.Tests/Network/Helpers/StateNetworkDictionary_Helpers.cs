@@ -14,12 +14,12 @@ namespace StateNet.Tests.Network.Helpers
         private static readonly ExpressionFactory<TransitionHistory> Expressions =
             new ExpressionFactory<TransitionHistory>();
 
-        public static IReadOnlyDictionary<string, IReadOnlyDictionary<string, IReadOnlyList<Connection>>>
+        public static Dictionary<string, Dictionary<string, IEnumerable<Connection>>>
             Minimal_Valid_Connected_StaticWeight_NetworkDictionary =>
-            new Dictionary<string, IReadOnlyDictionary<string, IReadOnlyList<Connection>>>
+            new Dictionary<string, Dictionary<string, IEnumerable<Connection>>>
             {
                 {
-                    "a", new Dictionary<string, IReadOnlyList<Connection>>
+                    "a", new Dictionary<string, IEnumerable<Connection>>
                     {
                         {
                             "1", new List<Connection>
@@ -30,7 +30,7 @@ namespace StateNet.Tests.Network.Helpers
                     }
                 },
                 {
-                    "b", new Dictionary<string, IReadOnlyList<Connection>>
+                    "b", new Dictionary<string, IEnumerable<Connection>>
                     {
                         {
                             "1", new List<Connection>
@@ -42,12 +42,12 @@ namespace StateNet.Tests.Network.Helpers
                 }
             };
 
-        public static IReadOnlyDictionary<string, IReadOnlyDictionary<string, IReadOnlyList<Connection>>>
+        public static Dictionary<string, Dictionary<string, IEnumerable<Connection>>>
             Invalid_UnusableInput_NetworkDictionary =>
-            new Dictionary<string, IReadOnlyDictionary<string, IReadOnlyList<Connection>>>
+            new Dictionary<string, Dictionary<string, IEnumerable<Connection>>>
             {
                 {
-                    "a", new Dictionary<string, IReadOnlyList<Connection>>
+                    "a", new Dictionary<string, IEnumerable<Connection>>
                     {
                         {
                             "1", new List<Connection>
@@ -58,7 +58,7 @@ namespace StateNet.Tests.Network.Helpers
                     }
                 },
                 {
-                    "b", new Dictionary<string, IReadOnlyList<Connection>>
+                    "b", new Dictionary<string, IEnumerable<Connection>>
                     {
                         {
                             "1", new List<Connection>
@@ -73,12 +73,12 @@ namespace StateNet.Tests.Network.Helpers
                 }
             };
 
-        public static IReadOnlyDictionary<string, IReadOnlyDictionary<string, IReadOnlyList<Connection>>>
+        public static Dictionary<string, Dictionary<string, IEnumerable<Connection>>>
             Invalid_Unreachable_State_NetworkDictionary =>
-            new Dictionary<string, IReadOnlyDictionary<string, IReadOnlyList<Connection>>>
+            new Dictionary<string, Dictionary<string, IEnumerable<Connection>>>
             {
                 {
-                    "a", new Dictionary<string, IReadOnlyList<Connection>>
+                    "a", new Dictionary<string, IEnumerable<Connection>>
                     {
                         {
                             "1", new List<Connection>
@@ -89,7 +89,7 @@ namespace StateNet.Tests.Network.Helpers
                     }
                 },
                 {
-                    "b", new Dictionary<string, IReadOnlyList<Connection>>
+                    "b", new Dictionary<string, IEnumerable<Connection>>
                     {
                         {
                             "1", new List<Connection>
@@ -100,7 +100,7 @@ namespace StateNet.Tests.Network.Helpers
                     }
                 },
                 {
-                    "c", new Dictionary<string, IReadOnlyList<Connection>>
+                    "c", new Dictionary<string, IEnumerable<Connection>>
                     {
                         {
                             "1", new List<Connection>()
@@ -109,12 +109,12 @@ namespace StateNet.Tests.Network.Helpers
                 }
             };
 
-        public static IReadOnlyDictionary<string, IReadOnlyDictionary<string, IReadOnlyList<Connection>>>
+        public static Dictionary<string, Dictionary<string, IEnumerable<Connection>>>
             Invalid_ConnectionTargetState_NetworkDictionary =>
-            new Dictionary<string, IReadOnlyDictionary<string, IReadOnlyList<Connection>>>
+            new Dictionary<string, Dictionary<string, IEnumerable<Connection>>>
             {
                 {
-                    "a", new Dictionary<string, IReadOnlyList<Connection>>
+                    "a", new Dictionary<string, IEnumerable<Connection>>
                     {
                         {
                             "1", new List<Connection>
@@ -125,7 +125,7 @@ namespace StateNet.Tests.Network.Helpers
                     }
                 },
                 {
-                    "b", new Dictionary<string, IReadOnlyList<Connection>>
+                    "b", new Dictionary<string, IEnumerable<Connection>>
                     {
                         {
                             "1", new List<Connection>
@@ -137,12 +137,12 @@ namespace StateNet.Tests.Network.Helpers
                 }
             };
 
-        public static IReadOnlyDictionary<string, IReadOnlyDictionary<string, IReadOnlyList<Connection>>>
+        public static Dictionary<string, Dictionary<string, IEnumerable<Connection>>>
             Invalid_ConnectionPatternState_NetworkDictionary =>
-            new Dictionary<string, IReadOnlyDictionary<string, IReadOnlyList<Connection>>>
+            new Dictionary<string, Dictionary<string, IEnumerable<Connection>>>
             {
                 {
-                    "a", new Dictionary<string, IReadOnlyList<Connection>>
+                    "a", new Dictionary<string, IEnumerable<Connection>>
                     {
                         {
                             "1", new List<Connection>
@@ -153,7 +153,7 @@ namespace StateNet.Tests.Network.Helpers
                     }
                 },
                 {
-                    "b", new Dictionary<string, IReadOnlyList<Connection>>
+                    "b", new Dictionary<string, IEnumerable<Connection>>
                     {
                         {
                             "1", new List<Connection>
@@ -165,12 +165,12 @@ namespace StateNet.Tests.Network.Helpers
                 }
             };
 
-        public static IReadOnlyDictionary<string, IReadOnlyDictionary<string, IReadOnlyList<Connection>>>
+        public static Dictionary<string, Dictionary<string, IEnumerable<Connection>>>
             Invalid_ConnectionPatternInput_NetworkDictionary =>
-            new Dictionary<string, IReadOnlyDictionary<string, IReadOnlyList<Connection>>>
+            new Dictionary<string, Dictionary<string, IEnumerable<Connection>>>
             {
                 {
-                    "a", new Dictionary<string, IReadOnlyList<Connection>>
+                    "a", new Dictionary<string, IEnumerable<Connection>>
                     {
                         {
                             "1", new List<Connection>
@@ -181,7 +181,7 @@ namespace StateNet.Tests.Network.Helpers
                     }
                 },
                 {
-                    "b", new Dictionary<string, IReadOnlyList<Connection>>
+                    "b", new Dictionary<string, IEnumerable<Connection>>
                     {
                         {
                             "1", new List<Connection>
@@ -193,16 +193,16 @@ namespace StateNet.Tests.Network.Helpers
                 }
             };
 
-        public static IReadOnlyDictionary<string, IReadOnlyDictionary<string, IReadOnlyList<Connection>>>
+        public static Dictionary<string, Dictionary<string, IEnumerable<Connection>>>
             Empty_NetworkDictionary =>
-            new Dictionary<string, IReadOnlyDictionary<string, IReadOnlyList<Connection>>>();
+            new Dictionary<string, Dictionary<string, IEnumerable<Connection>>>();
 
-        public static IReadOnlyDictionary<string, IReadOnlyDictionary<string, IReadOnlyList<Connection>>>
+        public static Dictionary<string, Dictionary<string, IEnumerable<Connection>>>
             SingleState_NetworkDictionary =>
-            new Dictionary<string, IReadOnlyDictionary<string, IReadOnlyList<Connection>>>
+            new Dictionary<string, Dictionary<string, IEnumerable<Connection>>>
             {
                 {
-                    "a", new Dictionary<string, IReadOnlyList<Connection>>()
+                    "a", new Dictionary<string, IEnumerable<Connection>>()
                 }
             };
     }

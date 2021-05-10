@@ -142,11 +142,11 @@ namespace Aptacode.StateNet.Network
             try
             {
                 var stateDictionary =
-                    new Dictionary<string, IReadOnlyDictionary<string, IReadOnlyList<Connection>>>();
+                    new Dictionary<string, Dictionary<string, IEnumerable<Connection>>>();
 
                 foreach (var state in _states)
                 {
-                    var inputDictionary = new Dictionary<string, IReadOnlyList<Connection>>();
+                    var inputDictionary = new Dictionary<string, IEnumerable<Connection>>();
 
                     foreach (var input in _inputs)
                     {
@@ -157,7 +157,7 @@ namespace Aptacode.StateNet.Network
                     var connectionsFromState = _connections.Where(c => c.Item1 == state).GroupBy(c => c.Item2);
                     foreach (var connectionGroup in connectionsFromState)
                     {
-                        var connections = connectionGroup.Select(c => c.Item3).ToImmutableList();
+                        var connections = connectionGroup.Select(c => c.Item3);
                         inputDictionary[connectionGroup.Key] = connections;
 
                         foreach (var connection in connections)
@@ -172,17 +172,16 @@ namespace Aptacode.StateNet.Network
                         }
                     }
 
-                    var emptyInputs = inputDictionary.Where(i => i.Value.Count == 0).Select(i => i.Key);
+                    var emptyInputs = inputDictionary.Where(i => i.Value.Count() == 0).Select(i => i.Key);
                     foreach (var emptyInput in emptyInputs)
                     {
                         inputDictionary.Remove(emptyInput);
                     }
 
-                    stateDictionary.Add(state, inputDictionary.ToImmutableDictionary());
+                    stateDictionary.Add(state, inputDictionary);
                 }
 
-                var network = new StateNetwork(_startState, stateDictionary.ToImmutableDictionary(),
-                    _patterns.ToImmutableArray());
+                var network = new StateNetwork(_startState, stateDictionary, _patterns.ToList());
                 return StateNetworkResult.Ok(network, Resources.SUCCESS);
             }
             catch (Exception ex)

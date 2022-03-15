@@ -53,7 +53,7 @@ public class TransitionHistory
             return matchTracker.MatchList;
         }
 
-        return new int[0];
+        return Array.Empty<int>();
     }
 
     public void Add(string input, string destination)

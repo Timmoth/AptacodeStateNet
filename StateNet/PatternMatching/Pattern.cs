@@ -12,7 +12,7 @@ public class Pattern : IEquatable<Pattern>
     {
         if (elements == null)
         {
-            elements = new string[0];
+            elements = Array.Empty<string>();
         }
 
         Elements = elements;

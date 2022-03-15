@@ -12,11 +12,8 @@ public class MatchesVisitor : ExpressionVisitor<TransitionHistory>
 {
     private readonly HashSet<string?> _dependencies = new();
     private readonly HashSet<Pattern> _patterns = new();
-
     public IReadOnlyList<string?> Dependencies => _dependencies.ToList();
     public IReadOnlyList<Pattern> Patterns => _patterns.ToList();
-
-
     public override void Visit<TType>(TerminalListExpression<TType, TransitionHistory> expression)
     {
         if (expression is Matches matches)

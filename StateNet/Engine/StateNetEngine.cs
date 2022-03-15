@@ -41,7 +41,7 @@ public class StateNetEngine
     {
         var connections = _network.GetConnections(CurrentState, input);
 
-        if (connections.Count() == 0)
+        if (!connections.Any())
         {
             return TransitionResult.Fail(Resources.NO_AVAILABLE_CONNECTION(CurrentState, input));
         }

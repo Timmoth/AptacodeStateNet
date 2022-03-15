@@ -37,16 +37,16 @@ public sealed class StateNetwork : IEquatable<StateNetwork>
     {
         if (!StateDictionary.TryGetValue(state, out var inputs))
         {
-            return new Connection[0];
+            return Array.Empty<Connection>();
         }
 
-        return inputs.TryGetValue(input, out var connections) ? connections : new Connection[0];
+        return inputs.TryGetValue(input, out var connections) ? connections : Array.Empty<Connection>();
     }
 
     public IEnumerable<Connection> GetConnections(string state)
     {
         return !StateDictionary.TryGetValue(state, out var inputs)
-            ? new Connection[0]
+            ? Array.Empty<Connection>()
             : inputs.Values.SelectMany(c => c);
     }
 
@@ -54,7 +54,7 @@ public sealed class StateNetwork : IEquatable<StateNetwork>
     {
         if (!StateDictionary.TryGetValue(state, out var inputs))
         {
-            return new string[0];
+            return Array.Empty<string>();
         }
 
         return inputs.Keys;

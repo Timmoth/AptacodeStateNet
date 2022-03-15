@@ -1,9 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net45;netcoreapp3.1</TargetFrameworks>
-    <Nullable>enable</Nullable>
-    <LangVersion>9.0</LangVersion>
+	  <TargetFramework>net6.0</TargetFramework>
+	  <LangVersion>10.0</LangVersion>
+	  <Nullable>enable</Nullable>
     <RootNamespace>Aptacode.StateNet</RootNamespace>
     <AssemblyName>Aptacode.StateNet</AssemblyName>
     <Authors>Timothy Jones</Authors>
@@ -51,8 +51,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Aptacode.Expressions" Version="1.0.12" />
-    <PackageReference Include="System.Collections.Immutable" Version="5.0.0" />
+    <PackageReference Include="Aptacode.Expressions" Version="1.0.13" />
+    <PackageReference Include="System.Collections.Immutable" Version="6.0.0" />
     <PackageReference Include="System.ValueTuple" Version="4.5.0" />
   </ItemGroup>
 

@@ -1,7 +1,6 @@
-﻿namespace Aptacode.StateNet.Random
+﻿namespace Aptacode.StateNet.Random;
+
+public interface IRandomNumberGenerator
 {
-    public interface IRandomNumberGenerator
-    {
-        int Generate(int min, int max);
-    }
+    int Generate(int min, int max);
 }

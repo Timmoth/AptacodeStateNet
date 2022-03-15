@@ -1,48 +1,47 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Aptacode.StateNet.PatternMatching
+namespace Aptacode.StateNet.PatternMatching;
+
+public class PatternMatcher
 {
-    public class PatternMatcher
+    public readonly List<int> MatchList = new();
+
+    public readonly Pattern Pattern;
+
+    public PatternMatcher(Pattern pattern)
     {
-        public readonly List<int> MatchList = new();
+        Pattern = pattern;
+    }
 
-        public readonly Pattern Pattern;
+    public int PatternIndex { get; private set; }
 
-        public PatternMatcher(Pattern pattern)
+    public void Add(int index, int hashCode)
+    {
+        if (!IsNextInPattern(hashCode))
         {
-            Pattern = pattern;
-        }
-
-        public int PatternIndex { get; private set; }
-
-        public void Add(int index, int hashCode)
-        {
-            if (!IsNextInPattern(hashCode))
-            {
-                PatternIndex = 0;
-                return;
-            }
-
-            if (++PatternIndex < Pattern.Length)
-            {
-                return;
-            }
-
             PatternIndex = 0;
-            MatchList.Add(index);
+            return;
         }
 
-        private bool IsNextInPattern(int hashCode)
+        if (++PatternIndex < Pattern.Length)
         {
-            var patternElement = Pattern.HashedElements.ElementAt(PatternIndex);
-            if (patternElement is not null && patternElement == hashCode)
-            {
-                return true;
-            }
-
-            PatternIndex = 0;
-            return false;
+            return;
         }
+
+        PatternIndex = 0;
+        MatchList.Add(index);
+    }
+
+    private bool IsNextInPattern(int hashCode)
+    {
+        var patternElement = Pattern.HashedElements.ElementAt(PatternIndex);
+        if (patternElement is not null && patternElement == hashCode)
+        {
+            return true;
+        }
+
+        PatternIndex = 0;
+        return false;
     }
 }

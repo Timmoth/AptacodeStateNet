@@ -1,21 +1,30 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
-
+	  <TargetFramework>net6.0</TargetFramework>
+	  <LangVersion>10.0</LangVersion>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Aptacode.Expressions" Version="1.0.12" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.8.3" />
-    <PackageReference Include="Moq" Version="4.15.2" />
+    <Compile Remove="PatternMatching\**" />
+    <Compile Remove="Random\**" />
+    <EmbeddedResource Remove="PatternMatching\**" />
+    <EmbeddedResource Remove="Random\**" />
+    <None Remove="PatternMatching\**" />
+    <None Remove="Random\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Aptacode.Expressions" Version="1.0.13" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
+    <PackageReference Include="Moq" Version="4.17.2" />
     <PackageReference Include="xunit" Version="2.4.1" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="coverlet.collector" Version="1.3.0">
+    <PackageReference Include="coverlet.collector" Version="3.1.2">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
@@ -23,11 +32,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\StateNet\StateNet.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="PatternMatching\Expressions\" />
-    <Folder Include="Random\" />
   </ItemGroup>
 
 </Project>

@@ -6,35 +6,34 @@ using Aptacode.StateNet.Engine.Transitions;
 using Aptacode.StateNet.PatternMatching;
 using Aptacode.StateNet.PatternMatching.Expressions;
 
-namespace Aptacode.StateNet.Network.Validator
+namespace Aptacode.StateNet.Network.Validator;
+
+public class MatchesVisitor : ExpressionVisitor<TransitionHistory>
 {
-    public class MatchesVisitor : ExpressionVisitor<TransitionHistory>
+    private readonly HashSet<string?> _dependencies = new();
+    private readonly HashSet<Pattern> _patterns = new();
+
+    public IReadOnlyList<string?> Dependencies => _dependencies.ToList();
+    public IReadOnlyList<Pattern> Patterns => _patterns.ToList();
+
+
+    public override void Visit<TType>(TerminalListExpression<TType, TransitionHistory> expression)
     {
-        private readonly HashSet<string?> _dependencies = new();
-        private readonly HashSet<Pattern> _patterns = new();
-
-        public IReadOnlyList<string?> Dependencies => _dependencies.ToList();
-        public IReadOnlyList<Pattern> Patterns => _patterns.ToList();
-
-
-        public override void Visit<TType>(TerminalListExpression<TType, TransitionHistory> expression)
+        if (expression is Matches matches)
         {
-            if (expression is Matches matches)
+            _patterns.Add(matches.Pattern);
+
+            foreach (var dependency in matches.Pattern.Elements)
             {
-                _patterns.Add(matches.Pattern);
-
-                foreach (var dependency in matches.Pattern.Elements)
+                if (string.IsNullOrEmpty(dependency))
                 {
-                    if (string.IsNullOrEmpty(dependency))
-                    {
-                        continue;
-                    }
-
-                    _dependencies.Add(dependency);
+                    continue;
                 }
-            }
 
-            base.Visit(expression);
+                _dependencies.Add(dependency);
+            }
         }
+
+        base.Visit(expression);
     }
 }

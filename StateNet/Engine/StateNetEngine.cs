@@ -5,77 +5,76 @@ using Aptacode.StateNet.Engine.Transitions;
 using Aptacode.StateNet.Network;
 using Aptacode.StateNet.Random;
 
-namespace Aptacode.StateNet.Engine
+namespace Aptacode.StateNet.Engine;
+
+public class StateNetEngine
 {
-    public class StateNetEngine
+    private readonly StateNetwork _network;
+    private readonly IRandomNumberGenerator _randomNumberGenerator;
+
+    public readonly TransitionHistory TransitionHistory;
+
+    public StateNetEngine(StateNetwork network, IRandomNumberGenerator randomNumberGenerator)
     {
-        private readonly StateNetwork _network;
-        private readonly IRandomNumberGenerator _randomNumberGenerator;
+        _network = network ?? throw new ArgumentNullException(nameof(network));
+        _randomNumberGenerator =
+            randomNumberGenerator ?? throw new ArgumentNullException(nameof(randomNumberGenerator));
+        CurrentState = _network.StartState;
+        TransitionHistory = new TransitionHistory(_network);
+    }
 
-        public readonly TransitionHistory TransitionHistory;
+    public string CurrentState { get; private set; }
 
-        public StateNetEngine(StateNetwork network, IRandomNumberGenerator randomNumberGenerator)
+    public event EventHandler<Transition>? OnTransition;
+
+    public IEnumerable<string> GetAvailableInputs()
+    {
+        return _network.GetInputs(CurrentState);
+    }
+
+    public IEnumerable<Connection> GetAvailableConnections(string input)
+    {
+        return _network.GetConnections(CurrentState, input);
+    }
+
+    public TransitionResult Apply(string input)
+    {
+        var connections = _network.GetConnections(CurrentState, input);
+
+        if (connections.Count() == 0)
         {
-            _network = network ?? throw new ArgumentNullException(nameof(network));
-            _randomNumberGenerator =
-                randomNumberGenerator ?? throw new ArgumentNullException(nameof(randomNumberGenerator));
-            CurrentState = _network.StartState;
-            TransitionHistory = new TransitionHistory(_network);
+            return TransitionResult.Fail(Resources.NO_AVAILABLE_CONNECTION(CurrentState, input));
         }
 
-        public string CurrentState { get; private set; }
-
-        public event EventHandler<Transition>? OnTransition;
-
-        public IEnumerable<string> GetAvailableInputs()
+        var weightedConnections = new List<string>();
+        foreach (var connection in connections)
         {
-            return _network.GetInputs(CurrentState);
-        }
-
-        public IEnumerable<Connection> GetAvailableConnections(string input)
-        {
-            return _network.GetConnections(CurrentState, input);
-        }
-
-        public TransitionResult Apply(string input)
-        {
-            var connections = _network.GetConnections(CurrentState, input);
-
-            if (connections.Count() == 0)
+            var connectionWeight = connection.Expression.Interpret(TransitionHistory);
+            if (connectionWeight <= 0)
             {
-                return TransitionResult.Fail(Resources.NO_AVAILABLE_CONNECTION(CurrentState, input));
+                continue;
             }
 
-            var weightedConnections = new List<string>();
-            foreach (var connection in connections)
+            for (var i = 0; i < connectionWeight; i++)
             {
-                var connectionWeight = connection.Expression.Interpret(TransitionHistory);
-                if (connectionWeight <= 0)
-                {
-                    continue;
-                }
-
-                for (var i = 0; i < connectionWeight; i++)
-                {
-                    weightedConnections.Add(connection.Target);
-                }
+                weightedConnections.Add(connection.Target);
             }
-
-            if (weightedConnections.Count == 0)
-            {
-                return TransitionResult.Fail(Resources.NO_AVAILABLE_CONNECTION(CurrentState, input));
-            }
-
-            var connectionIndex = _randomNumberGenerator.Generate(0, weightedConnections.Count);
-            var nextState = weightedConnections[connectionIndex];
-            var transition = new Transition(CurrentState, input, nextState);
-            TransitionHistory.Add(transition.Input, transition.Destination);
-
-            CurrentState = nextState;
-
-            OnTransition?.Invoke(this, transition);
-
-            return TransitionResult.Ok(transition, Resources.SUCCESS);
         }
+
+        if (weightedConnections.Count == 0)
+        {
+            return TransitionResult.Fail(Resources.NO_AVAILABLE_CONNECTION(CurrentState, input));
+        }
+
+        var connectionIndex = _randomNumberGenerator.Generate(0, weightedConnections.Count);
+        var nextState = weightedConnections[connectionIndex];
+        var transition = new Transition(CurrentState, input, nextState);
+        TransitionHistory.Add(transition.Input, transition.Destination);
+
+        CurrentState = nextState;
+
+        OnTransition?.Invoke(this, transition);
+
+        return TransitionResult.Ok(transition, Resources.SUCCESS);
     }
 }

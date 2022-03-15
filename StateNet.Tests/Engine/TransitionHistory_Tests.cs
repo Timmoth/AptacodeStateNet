@@ -5,75 +5,74 @@ using Aptacode.StateNet.PatternMatching;
 using StateNet.Tests.Network.Helpers;
 using Xunit;
 
-namespace StateNet.Tests.Engine
+namespace StateNet.Tests.Engine;
+
+public class TransitionHistory_Tests
 {
-    public class TransitionHistory_Tests
+    [Fact]
+    public void Constructor_Throws_ArgumentNullException_WhenStartStateIsNull()
     {
-        [Fact]
-        public void Constructor_Throws_ArgumentNullException_WhenStartStateIsNull()
-        {
-            //Assert
-            Assert.Throws<ArgumentNullException>(() =>
-            {
-                //Arrange
-                //Act
-                new TransitionHistory(null);
-            });
-        }
-
-        [Fact]
-        public void GetMatches_Returns_CorrectMatches_SingleMatch()
+        //Assert
+        Assert.Throws<ArgumentNullException>(() =>
         {
             //Arrange
-            var sut = new TransitionHistory(StateNetwork_Helpers
-                .Minimal_Valid_Connected_StaticWeight_Network_WithPattern);
-            sut.Add("1", "b");
             //Act
-            var pattern = new Pattern(StateNetwork_Helpers.StateB);
-            var matches = sut.GetMatches(pattern);
-            //Assert
-            Assert.Equal("1", matches.First().ToString());
-        }
+            new TransitionHistory(null);
+        });
+    }
 
-        //GetMatchesTest
-        //AddTest
-        [Fact]
-        public void ToString_Returns_CorrectHistory_WithMultipleTransitions()
-        {
-            //Arrange
-            var sut = new TransitionHistory(StateNetwork_Helpers.Minimal_Valid_Connected_StaticWeight_Network);
-            sut.Add("1", "b");
-            sut.Add("2", "c");
-            //Act
-            var actualResult = sut.ToString();
+    [Fact]
+    public void GetMatches_Returns_CorrectMatches_SingleMatch()
+    {
+        //Arrange
+        var sut = new TransitionHistory(StateNetwork_Helpers
+            .Minimal_Valid_Connected_StaticWeight_Network_WithPattern);
+        sut.Add("1", "b");
+        //Act
+        var pattern = new Pattern(StateNetwork_Helpers.StateB);
+        var matches = sut.GetMatches(pattern);
+        //Assert
+        Assert.Equal("1", matches.First().ToString());
+    }
 
-            //Assert
-            Assert.Equal("a,1,b,2,c", actualResult);
-        }
+    //GetMatchesTest
+    //AddTest
+    [Fact]
+    public void ToString_Returns_CorrectHistory_WithMultipleTransitions()
+    {
+        //Arrange
+        var sut = new TransitionHistory(StateNetwork_Helpers.Minimal_Valid_Connected_StaticWeight_Network);
+        sut.Add("1", "b");
+        sut.Add("2", "c");
+        //Act
+        var actualResult = sut.ToString();
 
-        [Fact]
-        public void ToString_Returns_CorrectHistory_WithOneTransition()
-        {
-            //Arrange
-            var sut = new TransitionHistory(StateNetwork_Helpers.Minimal_Valid_Connected_StaticWeight_Network);
-            sut.Add("next", "b");
-            //Act
-            var actualResult = sut.ToString();
+        //Assert
+        Assert.Equal("a,1,b,2,c", actualResult);
+    }
 
-            //Assert
-            Assert.Equal("a,next,b", actualResult);
-        }
+    [Fact]
+    public void ToString_Returns_CorrectHistory_WithOneTransition()
+    {
+        //Arrange
+        var sut = new TransitionHistory(StateNetwork_Helpers.Minimal_Valid_Connected_StaticWeight_Network);
+        sut.Add("next", "b");
+        //Act
+        var actualResult = sut.ToString();
 
-        [Fact]
-        public void ToString_Returns_StartState_WhenNoTransition()
-        {
-            //Arrange
-            var sut = new TransitionHistory(StateNetwork_Helpers.Minimal_Valid_Connected_StaticWeight_Network);
-            //Act
-            var actualResult = sut.ToString();
+        //Assert
+        Assert.Equal("a,next,b", actualResult);
+    }
 
-            //Assert
-            Assert.Equal("a", actualResult);
-        }
+    [Fact]
+    public void ToString_Returns_StartState_WhenNoTransition()
+    {
+        //Arrange
+        var sut = new TransitionHistory(StateNetwork_Helpers.Minimal_Valid_Connected_StaticWeight_Network);
+        //Act
+        var actualResult = sut.ToString();
+
+        //Assert
+        Assert.Equal("a", actualResult);
     }
 }
